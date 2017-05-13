@@ -37,6 +37,7 @@
 		65BD2C921EC7178600C7527A /* FlickrViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BD2C961EC7178600C7527A /* FlickrViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrViewerTests.m; sourceTree = "<group>"; };
 		65BD2C981EC7178600C7527A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FlickrViewerConfig.xcconfig; path = Config/FlickrViewerConfig.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 		65BD2C7B1EC7178600C7527A /* FlickrViewer */ = {
 			isa = PBXGroup;
 			children = (
+				65BD2CA21EC7198500C7527A /* Config */,
 				65BD2CA11EC7197200C7527A /* ViewControllers */,
 				65BD2C7F1EC7178600C7527A /* AppDelegate.h */,
 				65BD2C801EC7178600C7527A /* AppDelegate.m */,
@@ -112,6 +114,14 @@
 			children = (
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		65BD2CA21EC7198500C7527A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +363,7 @@
 		};
 		65BD2C9C1EC7178600C7527A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickrViewer/Info.plist;
@@ -365,6 +376,7 @@
 		};
 		65BD2C9D1EC7178600C7527A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickrViewer/Info.plist;
@@ -377,6 +389,7 @@
 		};
 		65BD2C9F1EC7178600C7527A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FlickrViewerTests/Info.plist;
@@ -389,6 +402,7 @@
 		};
 		65BD2CA01EC7178600C7527A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD2CA31EC719D800C7527A /* FlickrViewerConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FlickrViewerTests/Info.plist;

@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  FlickrViewer
+//
+//  Created by Daniel Bowden on 13/5/17.
+//  Copyright © 2017 Daniel Bowden. All rights reserved.
+//
+
+FLICKR_API_KEY=90f13f5dfd12a979934329465bbf6eb4
+FLICKR_BASE_URL=api.flickr.com/services/rest/

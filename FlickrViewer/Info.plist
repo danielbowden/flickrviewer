@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>kFlickrAPIKey</key>
+	<string>${FLICKR_API_KEY}</string>
+	<key>kFlickrBaseURL</key>
+	<string>https://${FLICKR_BASE_URL}</string>
 </dict>
 </plist>
