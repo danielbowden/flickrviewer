@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		654441121EC7F5C100327B93 /* FlickrAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441111EC7F5C100327B93 /* FlickrAPITests.m */; };
 		654441141EC807CA00327B93 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441131EC807CA00327B93 /* PhotoTests.m */; };
+		654441171EC8290E00327B93 /* GalleryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441161EC8290E00327B93 /* GalleryDataSource.m */; };
 		654441231EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441221EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m */; };
 		65BD2C7E1EC7178600C7527A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2C7D1EC7178600C7527A /* main.m */; };
 		65BD2C811EC7178600C7527A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2C801EC7178600C7527A /* AppDelegate.m */; };
@@ -18,6 +19,7 @@
 		65BD2CA71EC71FC500C7527A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2CA61EC71FC500C7527A /* Photo.m */; };
 		65BD2CAB1EC7349000C7527A /* SearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2CAA1EC7349000C7527A /* SearchService.m */; };
 		65BD2CAD1EC73ADC00C7527A /* SearchServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2CAC1EC73ADC00C7527A /* SearchServiceTests.m */; };
+		65BD2CB01EC74D1E00C7527A /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2CAF1EC74D1E00C7527A /* GalleryViewController.m */; };
 		65BD2CB31EC755F900C7527A /* FlickrAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BD2CB21EC755F900C7527A /* FlickrAPI.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		654441111EC7F5C100327B93 /* FlickrAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPITests.m; sourceTree = "<group>"; };
 		654441131EC807CA00327B93 /* PhotoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
+		654441151EC8290E00327B93 /* GalleryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryDataSource.h; path = ViewControllers/GalleryDataSource.h; sourceTree = "<group>"; };
+		654441161EC8290E00327B93 /* GalleryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryDataSource.m; path = ViewControllers/GalleryDataSource.m; sourceTree = "<group>"; };
 		654441211EC878BB00327B93 /* UIImageView+FlickrImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+FlickrImageDownloader.h"; path = "API/UIImageView+FlickrImageDownloader.h"; sourceTree = "<group>"; };
 		654441221EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+FlickrImageDownloader.m"; path = "API/UIImageView+FlickrImageDownloader.m"; sourceTree = "<group>"; };
 		65BD2C791EC7178600C7527A /* FlickrViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +56,8 @@
 		65BD2CA91EC7349000C7527A /* SearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchService.h; path = API/SearchService.h; sourceTree = "<group>"; };
 		65BD2CAA1EC7349000C7527A /* SearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchService.m; path = API/SearchService.m; sourceTree = "<group>"; };
 		65BD2CAC1EC73ADC00C7527A /* SearchServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchServiceTests.m; sourceTree = "<group>"; };
+		65BD2CAE1EC74D1E00C7527A /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryViewController.h; path = ViewControllers/GalleryViewController.h; sourceTree = "<group>"; };
+		65BD2CAF1EC74D1E00C7527A /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryViewController.m; path = ViewControllers/GalleryViewController.m; sourceTree = "<group>"; };
 		65BD2CB11EC755F900C7527A /* FlickrAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrAPI.h; path = API/FlickrAPI.h; sourceTree = "<group>"; };
 		65BD2CB21EC755F900C7527A /* FlickrAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrAPI.m; path = API/FlickrAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +138,10 @@
 		65BD2CA11EC7197200C7527A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65BD2CAE1EC74D1E00C7527A /* GalleryViewController.h */,
+				65BD2CAF1EC74D1E00C7527A /* GalleryViewController.m */,
+				654441151EC8290E00327B93 /* GalleryDataSource.h */,
+				654441161EC8290E00327B93 /* GalleryDataSource.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -270,10 +280,12 @@
 			files = (
 				65BD2CA71EC71FC500C7527A /* Photo.m in Sources */,
 				65BD2C811EC7178600C7527A /* AppDelegate.m in Sources */,
+				654441171EC8290E00327B93 /* GalleryDataSource.m in Sources */,
 				65BD2CB31EC755F900C7527A /* FlickrAPI.m in Sources */,
 				65BD2CAB1EC7349000C7527A /* SearchService.m in Sources */,
 				65BD2C7E1EC7178600C7527A /* main.m in Sources */,
 				654441231EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m in Sources */,
+				65BD2CB01EC74D1E00C7527A /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
