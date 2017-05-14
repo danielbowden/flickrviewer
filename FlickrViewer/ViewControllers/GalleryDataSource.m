@@ -9,6 +9,7 @@
 #import "GalleryDataSource.h"
 
 #import "Photo.h"
+#import "PhotoCell.h"
 #import "SearchService.h"
 
 @interface GalleryDataSource ()
@@ -72,6 +73,16 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self numberOfPhotos];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PhotoCell cellIdentifier] forIndexPath:indexPath];
+    
+    Photo *photo = [self photoAtIndex:indexPath.row];
+    cell.photo = photo;
+    
+    return cell;
 }
 
 @end
