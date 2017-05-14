@@ -41,6 +41,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationUsageDescription</key>
+	<string>This allows us to show photos closest to you.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This allows us to show photos closest to you.</string>
 	<key>kFlickrAPIKey</key>
 	<string>${FLICKR_API_KEY}</string>
 	<key>kFlickrBaseURL</key>
