@@ -125,6 +125,12 @@
         self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(searchTimerFired) userInfo:nil repeats:NO];
     }
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.searchController.active = NO;
+}
+
 #pragma mark - Button actions
 
 - (IBAction)requestLocationPermission
