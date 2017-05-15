@@ -22,5 +22,6 @@ typedef NS_ENUM(NSInteger, ImageDownloadSize)
 
 - (void)downloadPhoto:(Photo *)photo atSize:(ImageDownloadSize)size placeholderImage:(UIImage *)placeholderImage;
 - (void)downloadPhoto:(Photo *)photo atSize:(ImageDownloadSize)size placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated;
+- (void)cancelDownloadForPhoto:(Photo *)photo size:(ImageDownloadSize)size;
 
 @end

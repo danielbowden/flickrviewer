@@ -72,6 +72,26 @@ NSString static *const kFlickrCDNURL = @"https://staticflickr.com";
     }
 }
 
+- (void)cancelDownloadForPhoto:(Photo *)photo size:(ImageDownloadSize)size
+{
+    NSURL *urlToCancel = [self urlForPhoto:photo size:size];
+    
+    [[NSURLSession sharedSession] getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        
+        //Find the matching photo request and cancel it
+        NSInteger index = [dataTasks indexOfObjectPassingTest:^BOOL(NSURLSessionDataTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            return [obj.originalRequest.URL.absoluteString isEqualToString:urlToCancel.absoluteString];
+        }];
+        
+        if (index != NSNotFound)
+        {
+            NSURLSessionDataTask *task = dataTasks[index];
+            [task cancel];
+        }
+    }];
+}
+
 #pragma mark - Private
 
 - (NSURL *)urlForPhoto:(Photo *)photo size:(ImageDownloadSize)size
