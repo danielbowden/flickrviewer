@@ -30,6 +30,12 @@
     UIImage *placeholder = [UIImage imageNamed:@"placeholder-th"];
     [self.photoImageView downloadPhoto:_photo atSize:ImageDownloadSizeThumbnail placeholderImage:placeholder animated:YES];
 }
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.photoImageView.image = nil;
+    [self.photoImageView cancelDownloadForPhoto:self.photo size:ImageDownloadSizeThumbnail];
 }
 
 @end
