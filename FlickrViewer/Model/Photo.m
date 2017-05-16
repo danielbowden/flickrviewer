@@ -56,4 +56,19 @@ static NSDateFormatter *dateFormatter = nil;
     return self;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Super %@ \n ID: %@ \n secret: %@ \n server: %@ \n farm: %@ \n title: %@ \n views: %@ \n date: %@ \n location: %f,%f \n originalDimensions: %@",
+            [super description],
+            self.ID,
+            self.secret,
+            self.server,
+            self.farm,
+            self.title,
+            self.views,
+            self.date,
+            self.location.latitude, self.location.longitude,
+            NSStringFromCGSize(self.originalDimensions)];
+}
+
 @end
