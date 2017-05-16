@@ -10,9 +10,9 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "SearchService.h"
 #import "Photo.h"
 #import "GalleryDataSource.h"
+#import "PhotoViewController.h"
 
 @interface GalleryViewController () <UICollectionViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating>
 
@@ -54,11 +54,6 @@
     self.searchController.searchBar.placeholder = @"Keyword search";
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.dimsBackgroundDuringPresentation = NO;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     self.collectionView.dataSource = self.galleryDataSource;
     self.navigationItem.titleView = self.searchController.searchBar;
@@ -73,6 +68,13 @@
         self.locationPermissionView.hidden = NO;
         self.collectionView.alpha = 0.0;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -131,6 +133,17 @@
     self.searchController.active = NO;
 }
 
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Photo *photo = [self.galleryDataSource photoAtIndex:indexPath.row];
+    PhotoViewController *viewController = [[PhotoViewController alloc] initWithPhoto:photo];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 #pragma mark - Button actions
 
 - (IBAction)requestLocationPermission
@@ -166,7 +179,6 @@
 {
     [self showLoadingWithMessage:@"Loading photos"];
     [self.galleryDataSource refreshPhotosWithLocation:location searchTerm:searchTerm completion:^(BOOL success, NSError *error) {
-        NSLog(@"refresh response");
         __weak typeof(self)weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             

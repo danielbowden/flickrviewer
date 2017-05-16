@@ -56,6 +56,38 @@ static NSDateFormatter *dateFormatter = nil;
     return self;
 }
 
+- (NSString *)displayDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    if (self.date)
+    {
+        return [NSString stringWithFormat:@"UPLOADED: %@", [formatter stringFromDate:self.date].uppercaseString];
+    }
+    else
+    {
+        return @"UPLOADED: UNKNOWN";
+    }
+}
+
+- (NSString *)displayViews
+{
+    return [NSString stringWithFormat:@"%@ %@", self.views, self.views.integerValue != 1 ? @"VIEWS" : @"VIEW"];
+}
+
+- (NSString *)displayDimensions
+{
+    if (CGSizeEqualToSize(self.originalDimensions, CGSizeZero))
+    {
+        return @"ORIGINAL: UNKNOWN";
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"ORIGINAL: %.fx%.f", self.originalDimensions.width, self.originalDimensions.height];
+    }
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"Super %@ \n ID: %@ \n secret: %@ \n server: %@ \n farm: %@ \n title: %@ \n views: %@ \n date: %@ \n location: %f,%f \n originalDimensions: %@",

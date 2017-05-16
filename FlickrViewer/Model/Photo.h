@@ -20,8 +20,12 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) CLLocationCoordinate2D location;
 @property (nonatomic, assign) CGSize originalDimensions;
-@property (nonatomic, copy) NSString *views;
+@property (nonatomic, strong) NSNumber *views;
 
 - (instancetype)initWithJSON:(NSDictionary *)data;
+
+- (NSString *)displayViews;
+- (NSString *)displayDate;
+- (NSString *)displayDimensions;
 
 @end
