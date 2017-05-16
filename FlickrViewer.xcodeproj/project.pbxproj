@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65247B9D1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */; };
 		654441121EC7F5C100327B93 /* FlickrAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441111EC7F5C100327B93 /* FlickrAPITests.m */; };
 		654441141EC807CA00327B93 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441131EC807CA00327B93 /* PhotoTests.m */; };
 		654441171EC8290E00327B93 /* GalleryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441161EC8290E00327B93 /* GalleryDataSource.m */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrImageDownloaderTests.m; sourceTree = "<group>"; };
 		654441111EC7F5C100327B93 /* FlickrAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPITests.m; sourceTree = "<group>"; };
 		654441131EC807CA00327B93 /* PhotoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
 		654441151EC8290E00327B93 /* GalleryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryDataSource.h; path = ViewControllers/GalleryDataSource.h; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				654441111EC7F5C100327B93 /* FlickrAPITests.m */,
 				65BD2CAC1EC73ADC00C7527A /* SearchServiceTests.m */,
 				654441131EC807CA00327B93 /* PhotoTests.m */,
+				65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */,
 			);
 			path = FlickrViewerTests;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				654441121EC7F5C100327B93 /* FlickrAPITests.m in Sources */,
 				654441141EC807CA00327B93 /* PhotoTests.m in Sources */,
 				65BD2CAD1EC73ADC00C7527A /* SearchServiceTests.m in Sources */,
+				65247B9D1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

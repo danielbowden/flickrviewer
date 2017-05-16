@@ -13,9 +13,9 @@
 //Map Flickr size suffixes for appropriate image sizes for this app
 NSString static *const ImageDownloadSizeString[] = {
     [ImageDownloadSizeThumbnail] = @"m",
-    [ImageDownloadSizeSmall] = @"c",
-    [ImageDownloadSizeMedium] = @"h",
-    [ImageDownloadSizeLarge] = @"k"
+    [ImageDownloadSizeSmall] = @"z",
+    [ImageDownloadSizeMedium] = @"b",
+    [ImageDownloadSizeLarge] = @"h"
 };
 
 NSString static *const kFlickrCDNURL = @"https://staticflickr.com";
