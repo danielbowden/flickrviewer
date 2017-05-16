@@ -21,6 +21,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *originalDimensionsLabel;
 @property (nonatomic, weak) IBOutlet UILabel *viewsLabel;
 
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)recognizer;
+
 @end
 
 @implementation PhotoViewController
@@ -51,11 +53,27 @@
     
     UIImage *placeholder = [UIImage imageNamed:@"placeholder-lrg"];
     [self.photoImageView downloadPhoto:self.photo atSize:ImageDownloadSizeLarge placeholderImage:placeholder animated:YES];
+    [self.photoImageView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)]];
     
     self.titleLabel.text = self.photo.title;
     self.viewsLabel.text = [self.photo displayViews];
     self.dateLabel.text = [self.photo displayDate];
     self.originalDimensionsLabel.text = [self.photo displayDimensions];
+}
+
+#pragma mark - Private methods
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)recognizer
+{
+    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+    recognizer.scale = 1;
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                recognizer.view.transform = CGAffineTransformIdentity;
+        } completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
