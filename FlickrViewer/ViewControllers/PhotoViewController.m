@@ -42,6 +42,7 @@
 {
     [super viewDidLoad];
     
+    self.title = self.photo.owner;
 }
 
 - (void)viewWillAppear:(BOOL)animated

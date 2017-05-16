@@ -21,6 +21,7 @@
 @property (nonatomic, assign) CLLocationCoordinate2D location;
 @property (nonatomic, assign) CGSize originalDimensions;
 @property (nonatomic, strong) NSNumber *views;
+@property (nonatomic, copy) NSString *owner;
 
 - (instancetype)initWithJSON:(NSDictionary *)data;
 

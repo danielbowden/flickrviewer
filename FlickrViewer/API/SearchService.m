@@ -89,7 +89,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"content_type":@"1",
                                                                                   @"safe_search":@"1",
-                                                                                  @"extras":@"date_upload,views,o_dims,geo"
+                                                                                  @"extras":@"date_upload,views,o_dims,geo,owner_name"
                                                                                   }];
     
     if (location && CLLocationCoordinate2DIsValid(location.coordinate))

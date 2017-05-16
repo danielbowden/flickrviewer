@@ -27,6 +27,7 @@ static NSDateFormatter *dateFormatter = nil;
         _farm = data[@"farm"];
         _title = data[@"title"];
         _views = data[@"views"];
+        _owner = data[@"ownername"];
         
         NSString *uploadDate = data[@"dateupload"];
         if (uploadDate)
