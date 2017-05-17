@@ -39,7 +39,8 @@
                                    @"latitude":@"-33.918036",
                                    @"longitude":@"151.199807",
                                    @"o_width":@"1826",
-                                   @"o_height":@"2435"
+                                   @"o_height":@"2435",
+                                   @"ownername":@"Daniel"
                                    };
     
     Photo *photo = [[Photo alloc] initWithJSON:responseJSON];
@@ -53,6 +54,7 @@
     XCTAssertTrue(CLLocationCoordinate2DIsValid(photo.location));
     XCTAssertTrue(CGSizeEqualToSize(photo.originalDimensions, CGSizeMake(1826, 2435)));
     XCTAssertEqual(photo.views, @824);
+    XCTAssertTrue([photo.owner isEqualToString:@"Daniel"]);
 }
 
 - (void)testPhotoObjectSerializationHandlesMissingUploadDate
@@ -114,6 +116,55 @@
     Photo *photo = [[Photo alloc] initWithJSON:responseJSON];
     
     XCTAssertFalse(CLLocationCoordinate2DIsValid(photo.location));
+}
+
+- (void)testObjectSerializationParsesTagStringIntoArrayProperty
+{
+    NSDictionary *responseJSON = @{
+                                   @"id":@"34642583775",
+                                   @"farm":@"5",
+                                   @"server":@"4162",
+                                   @"secret":@"175b8ba0c6",
+                                   @"title":@"Photo title",
+                                   @"tags":@"sydney beach photography sunset"
+                                   };
+    
+    Photo *photo = [[Photo alloc] initWithJSON:responseJSON];
+    NSArray *tagArray = @[@"sydney", @"beach", @"photography", @"sunset"];
+    
+    XCTAssertTrue([photo.tags isEqualToArray:tagArray]);
+}
+
+- (void)testObjectSerializationReturnsEmptyTagArrayForMissingTagResponse
+{
+    NSDictionary *responseJSON = @{
+                                   @"id":@"34642583775",
+                                   @"farm":@"5",
+                                   @"server":@"4162",
+                                   @"secret":@"175b8ba0c6",
+                                   @"title":@"Photo title"
+                                   };
+    
+    Photo *photo = [[Photo alloc] initWithJSON:responseJSON];
+    
+    XCTAssertNil(photo.tags);
+}
+
+- (void)testObjectSerializationReturnsSingleTag
+{
+    NSDictionary *responseJSON = @{
+                                   @"id":@"34642583775",
+                                   @"farm":@"5",
+                                   @"server":@"4162",
+                                   @"secret":@"175b8ba0c6",
+                                   @"title":@"Photo title",
+                                   @"tags":@"beach"
+                                   };
+    
+    Photo *photo = [[Photo alloc] initWithJSON:responseJSON];
+    
+    XCTAssertTrue(photo.tags.count == 1);
+    XCTAssertTrue([photo.tags isEqualToArray:@[@"beach"]]);
 }
 
 - (void)testDisplayDateReturnsDateStringInExpectedFormat

@@ -22,6 +22,7 @@
 @property (nonatomic, assign) CGSize originalDimensions;
 @property (nonatomic, strong) NSNumber *views;
 @property (nonatomic, copy) NSString *owner;
+@property (nonatomic, strong) NSArray<NSString *> *tags;
 
 - (instancetype)initWithJSON:(NSDictionary *)data;
 

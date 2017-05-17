@@ -52,6 +52,12 @@ static NSDateFormatter *dateFormatter = nil;
         {
             _originalDimensions = CGSizeMake(originalWidth.floatValue, originalHeight.floatValue);
         }
+        
+        NSString *tagString = data[@"tags"];
+        if (tagString && tagString.length)
+        {
+            _tags = [tagString componentsSeparatedByString:@" "];
+        }
     }
     
     return self;

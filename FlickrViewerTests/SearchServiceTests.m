@@ -43,7 +43,7 @@
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"]]);
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"content_type" value:@"1"]]);
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"safe_search" value:@"1"]]);
-    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"extras" value:@"date_upload,views,o_dims,geo,owner_name"]]);
+    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"extras" value:@"date_upload,views,o_dims,geo,owner_name,tags"]]);
 }
 
 - (void)testURLSkipsNilKeywordSearchParameters
