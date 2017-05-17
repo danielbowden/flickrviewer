@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65091A191ECC838A003F2D67 /* GalleryDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65091A181ECC838A003F2D67 /* GalleryDataSourceTests.m */; };
+		65091A1C1ECC8979003F2D67 /* FilterTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65091A1B1ECC8979003F2D67 /* FilterTagsViewController.m */; };
+		65091A201ECC8DBF003F2D67 /* FilterTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65091A1F1ECC8DBF003F2D67 /* FilterTagCell.m */; };
 		65247B9B1ECAEB4300E13D87 /* GradientBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65247B9A1ECAEB4300E13D87 /* GradientBackView.m */; };
 		65247B9D1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */; };
 		65357F6A1ECC219900373182 /* UIImage+FlickrViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65357F691ECC219900373182 /* UIImage+FlickrViewer.m */; };
@@ -39,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65091A181ECC838A003F2D67 /* GalleryDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDataSourceTests.m; sourceTree = "<group>"; };
+		65091A1A1ECC8979003F2D67 /* FilterTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterTagsViewController.h; path = ViewControllers/FilterTagsViewController.h; sourceTree = "<group>"; };
+		65091A1B1ECC8979003F2D67 /* FilterTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTagsViewController.m; path = ViewControllers/FilterTagsViewController.m; sourceTree = "<group>"; };
+		65091A1E1ECC8DBF003F2D67 /* FilterTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterTagCell.h; path = ViewControllers/TableCells/FilterTagCell.h; sourceTree = "<group>"; };
+		65091A1F1ECC8DBF003F2D67 /* FilterTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTagCell.m; path = ViewControllers/TableCells/FilterTagCell.m; sourceTree = "<group>"; };
 		65247B991ECAEB4300E13D87 /* GradientBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientBackView.h; path = View/GradientBackView.h; sourceTree = "<group>"; };
 		65247B9A1ECAEB4300E13D87 /* GradientBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientBackView.m; path = View/GradientBackView.m; sourceTree = "<group>"; };
 		65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrImageDownloaderTests.m; sourceTree = "<group>"; };
@@ -94,13 +102,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65091A1D1ECC8D94003F2D67 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				65091A1E1ECC8DBF003F2D67 /* FilterTagCell.h */,
+				65091A1F1ECC8DBF003F2D67 /* FilterTagCell.m */,
+			);
+			name = TableCells;
+			sourceTree = "<group>";
+		};
+		65091A211ECC8EBF003F2D67 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				65357F681ECC219900373182 /* UIImage+FlickrViewer.h */,
+				65357F691ECC219900373182 /* UIImage+FlickrViewer.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		65247B981ECAEB1600E13D87 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				65247B991ECAEB4300E13D87 /* GradientBackView.h */,
 				65247B9A1ECAEB4300E13D87 /* GradientBackView.m */,
-				65357F681ECC219900373182 /* UIImage+FlickrViewer.h */,
-				65357F691ECC219900373182 /* UIImage+FlickrViewer.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -140,6 +164,7 @@
 				65BD2CA81EC7337A00C7527A /* API */,
 				65BD2CA11EC7197200C7527A /* ViewControllers */,
 				65247B981ECAEB1600E13D87 /* Views */,
+				65091A211ECC8EBF003F2D67 /* Helpers */,
 				65BD2C7F1EC7178600C7527A /* AppDelegate.h */,
 				65BD2C801EC7178600C7527A /* AppDelegate.m */,
 				65BD2C851EC7178600C7527A /* Main.storyboard */,
@@ -167,6 +192,7 @@
 				65BD2CAC1EC73ADC00C7527A /* SearchServiceTests.m */,
 				654441131EC807CA00327B93 /* PhotoTests.m */,
 				65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */,
+				65091A181ECC838A003F2D67 /* GalleryDataSourceTests.m */,
 			);
 			path = FlickrViewerTests;
 			sourceTree = "<group>";
@@ -174,6 +200,7 @@
 		65BD2CA11EC7197200C7527A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65091A1D1ECC8D94003F2D67 /* TableCells */,
 				654441181EC8328B00327B93 /* CollectionCells */,
 				65BD2CAE1EC74D1E00C7527A /* GalleryViewController.h */,
 				65BD2CAF1EC74D1E00C7527A /* GalleryViewController.m */,
@@ -181,6 +208,8 @@
 				654441161EC8290E00327B93 /* GalleryDataSource.m */,
 				65E831A21ECA71B6008A61FA /* PhotoViewController.h */,
 				65E831A31ECA71B6008A61FA /* PhotoViewController.m */,
+				65091A1A1ECC8979003F2D67 /* FilterTagsViewController.h */,
+				65091A1B1ECC8979003F2D67 /* FilterTagsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -318,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6544411B1EC832AE00327B93 /* PhotoCell.m in Sources */,
+				65091A1C1ECC8979003F2D67 /* FilterTagsViewController.m in Sources */,
 				65BD2CA71EC71FC500C7527A /* Photo.m in Sources */,
 				65BD2C811EC7178600C7527A /* AppDelegate.m in Sources */,
 				654441171EC8290E00327B93 /* GalleryDataSource.m in Sources */,
@@ -326,6 +356,7 @@
 				65BD2CAB1EC7349000C7527A /* SearchService.m in Sources */,
 				65BD2C7E1EC7178600C7527A /* main.m in Sources */,
 				654441231EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m in Sources */,
+				65091A201ECC8DBF003F2D67 /* FilterTagCell.m in Sources */,
 				65BD2CB01EC74D1E00C7527A /* GalleryViewController.m in Sources */,
 				65357F6A1ECC219900373182 /* UIImage+FlickrViewer.m in Sources */,
 				65E831A41ECA71B6008A61FA /* PhotoViewController.m in Sources */,
@@ -336,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65091A191ECC838A003F2D67 /* GalleryDataSourceTests.m in Sources */,
 				654441121EC7F5C100327B93 /* FlickrAPITests.m in Sources */,
 				654441141EC807CA00327B93 /* PhotoTests.m in Sources */,
 				65BD2CAD1EC73ADC00C7527A /* SearchServiceTests.m in Sources */,

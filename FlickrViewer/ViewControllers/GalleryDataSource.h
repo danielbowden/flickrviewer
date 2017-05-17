@@ -28,5 +28,7 @@ NSString static *const GallerySearchScopeTitle[] = {
 
 - (Photo *)photoAtIndex:(NSInteger)index;
 - (NSInteger)numberOfPhotos;
+- (NSArray<NSString *> *)availableTags;
+- (void)filterByTags:(NSArray<NSString *> *)tags completion:(void (^)())completionBlock;
 
 @end

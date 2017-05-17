@@ -14,6 +14,7 @@
 #import "GalleryDataSource.h"
 #import "PhotoViewController.h"
 #import "UIImage+FlickrViewer.h"
+#import "FilterTagsViewController.h"
 
 @interface GalleryViewController () <UICollectionViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate>
 
@@ -37,6 +38,7 @@
 - (void)hideLoading;
 - (void)searchTimerFired;
 - (void)updateSearchRequest:(CLLocation *)location searchTerm:(NSString *)searchTerm;
+- (void)filterByTags;
 
 @end
 
@@ -51,6 +53,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterByTags)];
     
     [self configureSearchController];
     
@@ -225,6 +229,30 @@
             }
         });
     }];
+}
+
+- (void)filterByTags
+{
+    self.searchController.active = NO;
+    __weak typeof(self)weakSelf = self;
+    FilterTagsViewController *filterViewController = [[FilterTagsViewController alloc] initWithAvailableTags:[self.galleryDataSource availableTags] completion:^(NSArray<NSString *> *selectedTags) {
+        
+            [weakSelf dismissViewControllerAnimated:YES completion:^{
+                
+                if (selectedTags.count)
+                {
+                    [weakSelf.galleryDataSource filterByTags:selectedTags completion:^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [weakSelf.collectionView setContentOffset:CGPointZero animated:NO];
+                            [weakSelf.collectionView reloadData];
+                        });
+                    }];
+                }
+                
+            }];
+    }];
+    
+    [self presentViewController:filterViewController animated:YES completion:nil];
 }
 
 - (void)showLoadingWithMessage:(NSString *)message

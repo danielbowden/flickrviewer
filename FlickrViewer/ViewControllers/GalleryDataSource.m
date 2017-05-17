@@ -80,6 +80,30 @@
     }];
 }
 
+- (NSArray<NSString *> *)availableTags
+{
+    return [self.photos valueForKeyPath:@"@distinctUnionOfArrays.tags"];
+}
+
+- (void)filterByTags:(NSArray<NSString *> *)tags completion:(void (^)())completionBlock
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableSet *filterTags = [NSMutableSet setWithArray:tags];
+        
+        [self.photos filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Photo *photo, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return [filterTags intersectsSet:[NSSet setWithArray:photo.tags]];
+            
+        }]];
+        
+        if (completionBlock)
+        {
+            completionBlock();
+        }
+    });
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

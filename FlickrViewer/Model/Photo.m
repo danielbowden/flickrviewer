@@ -97,7 +97,7 @@ static NSDateFormatter *dateFormatter = nil;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Super %@ \n ID: %@ \n secret: %@ \n server: %@ \n farm: %@ \n title: %@ \n views: %@ \n date: %@ \n location: %f,%f \n originalDimensions: %@",
+    return [NSString stringWithFormat:@"Super %@ \n ID: %@ \n secret: %@ \n server: %@ \n farm: %@ \n title: %@ \n views: %@ \n date: %@ \n location: %f,%f \n originalDimensions: %@ \n tags: %@",
             [super description],
             self.ID,
             self.secret,
@@ -107,7 +107,8 @@ static NSDateFormatter *dateFormatter = nil;
             self.views,
             self.date,
             self.location.latitude, self.location.longitude,
-            NSStringFromCGSize(self.originalDimensions)];
+            NSStringFromCGSize(self.originalDimensions),
+            self.tags];
 }
 
 @end
