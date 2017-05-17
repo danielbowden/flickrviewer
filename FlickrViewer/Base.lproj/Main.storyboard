@@ -13,7 +13,7 @@
         <scene sceneID="1cM-lB-S05">
             <objects>
                 <navigationController id="gFY-YH-P6g" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="faY-Uy-SgQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="faY-Uy-SgQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -37,8 +37,15 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cp2-Tf-8zP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="9VA-PR-t5H"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbs-eF-MyD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="Zwk-pS-NLa">
                                     <size key="itemSize" width="124" height="124"/>
@@ -102,7 +109,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-CG-8jz">
-                                <rect key="frame" x="0.0" y="10" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nWa-Hz-qZN">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
@@ -141,13 +148,16 @@
                         <constraints>
                             <constraint firstItem="uWP-o3-eMU" firstAttribute="top" secondItem="Zbs-eF-MyD" secondAttribute="bottom" id="1GP-n1-eWP"/>
                             <constraint firstAttribute="trailing" secondItem="Zbs-eF-MyD" secondAttribute="trailing" id="3HJ-bU-uer"/>
+                            <constraint firstItem="cp2-Tf-8zP" firstAttribute="top" secondItem="Nan-Ed-zNE" secondAttribute="bottom" id="3ag-1o-9EK"/>
                             <constraint firstItem="9np-tX-sfc" firstAttribute="centerX" secondItem="RGW-dM-I4y" secondAttribute="centerX" id="5Hd-8X-H69"/>
                             <constraint firstAttribute="trailing" secondItem="D0e-CG-8jz" secondAttribute="trailing" id="7L0-gv-x8E"/>
-                            <constraint firstItem="D0e-CG-8jz" firstAttribute="top" secondItem="Nan-Ed-zNE" secondAttribute="bottom" constant="10" id="PR1-LE-yJU"/>
+                            <constraint firstItem="Zbs-eF-MyD" firstAttribute="top" secondItem="Nan-Ed-zNE" secondAttribute="bottom" constant="44" id="EEU-XQ-hms"/>
+                            <constraint firstItem="D0e-CG-8jz" firstAttribute="top" secondItem="cp2-Tf-8zP" secondAttribute="bottom" constant="10" id="R9h-0U-QkB"/>
+                            <constraint firstItem="cp2-Tf-8zP" firstAttribute="leading" secondItem="RGW-dM-I4y" secondAttribute="leading" id="Rp2-Fr-5Kf"/>
                             <constraint firstItem="Zbs-eF-MyD" firstAttribute="leading" secondItem="RGW-dM-I4y" secondAttribute="leading" id="Z9P-YU-Bv1"/>
                             <constraint firstItem="9np-tX-sfc" firstAttribute="centerY" secondItem="RGW-dM-I4y" secondAttribute="centerY" id="fTX-7D-pt3"/>
                             <constraint firstItem="D0e-CG-8jz" firstAttribute="leading" secondItem="RGW-dM-I4y" secondAttribute="leading" id="hZG-ow-R5k"/>
-                            <constraint firstItem="Zbs-eF-MyD" firstAttribute="top" secondItem="Nan-Ed-zNE" secondAttribute="bottom" id="xhj-m7-m2y"/>
+                            <constraint firstAttribute="trailing" secondItem="cp2-Tf-8zP" secondAttribute="trailing" id="vpX-hV-TvK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gallery" id="fKy-Pg-9Ed"/>
@@ -157,6 +167,7 @@
                         <outlet property="loadingMessageLabel" destination="Dme-6M-qi5" id="syy-D2-1xq"/>
                         <outlet property="loadingView" destination="9np-tX-sfc" id="bGO-aU-589"/>
                         <outlet property="locationPermissionView" destination="D0e-CG-8jz" id="Iba-tA-3x5"/>
+                        <outlet property="searchContainer" destination="cp2-Tf-8zP" id="37C-Jr-O75"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSA-U5-zTG" userLabel="First Responder" sceneMemberID="firstResponder"/>

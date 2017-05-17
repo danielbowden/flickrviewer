@@ -13,8 +13,9 @@
 #import "Photo.h"
 #import "GalleryDataSource.h"
 #import "PhotoViewController.h"
+#import "UIImage+FlickrViewer.h"
 
-@interface GalleryViewController () <UICollectionViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating>
+@interface GalleryViewController () <UICollectionViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) GalleryDataSource *galleryDataSource;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) NSTimer *searchTimer;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UIView *searchContainer;
 @property (nonatomic, weak) IBOutlet UIView *loadingView;
 @property (nonatomic, weak) IBOutlet UILabel *loadingMessageLabel;
 @property (nonatomic, weak) IBOutlet UIView *locationPermissionView;
@@ -29,6 +31,7 @@
 
 - (IBAction)requestLocationPermission;
 
+- (void)configureSearchController;
 - (void)showError:(NSString *)errorMessage;
 - (void)showLoadingWithMessage:(NSString *)message;
 - (void)hideLoading;
@@ -44,19 +47,12 @@
     [super viewDidLoad];
     
     self.galleryDataSource = [[GalleryDataSource alloc] init];
+    self.collectionView.dataSource = self.galleryDataSource;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.searchBar.showsCancelButton = NO;
-    self.searchController.searchBar.tintColor = [UIColor redColor];
-    self.searchController.searchBar.placeholder = @"Keyword search";
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
     
-    self.collectionView.dataSource = self.galleryDataSource;
-    self.navigationItem.titleView = self.searchController.searchBar;
+    [self configureSearchController];
     
     if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
     {
@@ -73,8 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-
+    self.searchController.active = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -133,11 +128,25 @@
     self.searchController.active = NO;
 }
 
+#pragma mark - UISearchControllerDelegate
+
+- (void)didDismissSearchController:(UISearchController *)searchController
+{
+    CGRect searchBarFrame = self.searchController.searchBar.frame;
+    searchBarFrame.size.width = self.view.frame.size.width;
+    self.searchController.searchBar.frame = searchBarFrame;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    searchBar.placeholder = selectedScope == GallerySearchScopeKeyword ? @"Keyword search" : @"Tag search";
+}
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.searchController.active = NO;
     Photo *photo = [self.galleryDataSource photoAtIndex:indexPath.row];
     PhotoViewController *viewController = [[PhotoViewController alloc] initWithPhoto:photo];
     
@@ -169,6 +178,26 @@
 }
 
 #pragma mark - Private methods
+
+- (void)configureSearchController
+{
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    
+    self.searchController.searchBar.showsCancelButton = NO;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.tintColor = [UIColor redColor];
+    self.searchController.searchBar.placeholder = @"Keyword search";
+    self.searchController.searchBar.scopeButtonTitles = @[GallerySearchScopeTitle[0], GallerySearchScopeTitle[1]];
+    
+    self.searchController.searchBar.scopeBarBackgroundImage = [UIImage imageWithColor:[UIColor greenColor]];
+    self.searchController.searchBar.backgroundImage = [UIImage imageWithColor:[UIColor greenColor]];
+    
+    [self.searchContainer addSubview:self.searchController.searchBar];
+}
 
 - (void)searchTimerFired
 {
@@ -228,6 +257,18 @@
         
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+//Handle search bar in orientation/rotation change
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        CGRect searchBarFrame = self.searchController.searchBar.frame;
+        searchBarFrame.size.width = self.view.frame.size.width;
+        self.searchController.searchBar.frame = searchBarFrame;
+    } completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
