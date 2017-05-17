@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		65247B9B1ECAEB4300E13D87 /* GradientBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65247B9A1ECAEB4300E13D87 /* GradientBackView.m */; };
 		65247B9D1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */; };
+		65357F6A1ECC219900373182 /* UIImage+FlickrViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65357F691ECC219900373182 /* UIImage+FlickrViewer.m */; };
 		654441121EC7F5C100327B93 /* FlickrAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441111EC7F5C100327B93 /* FlickrAPITests.m */; };
 		654441141EC807CA00327B93 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441131EC807CA00327B93 /* PhotoTests.m */; };
 		654441171EC8290E00327B93 /* GalleryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 654441161EC8290E00327B93 /* GalleryDataSource.m */; };
@@ -41,6 +42,8 @@
 		65247B991ECAEB4300E13D87 /* GradientBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientBackView.h; path = View/GradientBackView.h; sourceTree = "<group>"; };
 		65247B9A1ECAEB4300E13D87 /* GradientBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientBackView.m; path = View/GradientBackView.m; sourceTree = "<group>"; };
 		65247B9C1ECB3B1000E13D87 /* FlickrImageDownloaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrImageDownloaderTests.m; sourceTree = "<group>"; };
+		65357F681ECC219900373182 /* UIImage+FlickrViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+FlickrViewer.h"; path = "View/UIImage+FlickrViewer.h"; sourceTree = "<group>"; };
+		65357F691ECC219900373182 /* UIImage+FlickrViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+FlickrViewer.m"; path = "View/UIImage+FlickrViewer.m"; sourceTree = "<group>"; };
 		654441111EC7F5C100327B93 /* FlickrAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPITests.m; sourceTree = "<group>"; };
 		654441131EC807CA00327B93 /* PhotoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
 		654441151EC8290E00327B93 /* GalleryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryDataSource.h; path = ViewControllers/GalleryDataSource.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 			children = (
 				65247B991ECAEB4300E13D87 /* GradientBackView.h */,
 				65247B9A1ECAEB4300E13D87 /* GradientBackView.m */,
+				65357F681ECC219900373182 /* UIImage+FlickrViewer.h */,
+				65357F691ECC219900373182 /* UIImage+FlickrViewer.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				65BD2C7E1EC7178600C7527A /* main.m in Sources */,
 				654441231EC878BB00327B93 /* UIImageView+FlickrImageDownloader.m in Sources */,
 				65BD2CB01EC74D1E00C7527A /* GalleryViewController.m in Sources */,
+				65357F6A1ECC219900373182 /* UIImage+FlickrViewer.m in Sources */,
 				65E831A41ECA71B6008A61FA /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
