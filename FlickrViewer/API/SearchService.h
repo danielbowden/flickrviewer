@@ -14,6 +14,6 @@
 @interface SearchService : NSObject
 
 - (void)photosForLocation:(CLLocation *)location success:(void (^)(NSArray<Photo *> *photos))success failure:(void (^)(NSError *error))failure;
-- (void)photosForLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm success:(void (^)(NSArray<Photo *> *photos))success failure:(void (^)(NSError *error))failure;
+- (void)photosForLocation:(CLLocation *)location keywords:(NSString *)keywords tags:(NSArray <NSString *> *)tags success:(void (^)(NSArray<Photo *> *photos))success failure:(void (^)(NSError *error))failure;
 
 @end

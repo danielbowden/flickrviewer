@@ -12,7 +12,7 @@
 
 @interface SearchService (Testing)
 
-- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm;
+- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location keywords:(NSString *)keywords tags:(NSArray<NSString *> *)tags;
 
 @end
 
@@ -37,7 +37,7 @@
 {
     SearchService *service = [[SearchService alloc] init];
     
-    NSURL *testURL = [service searchEndpointURLForLocation:nil searchTerm:nil];
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:nil];
     NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
     
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"]]);
@@ -46,11 +46,11 @@
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"extras" value:@"date_upload,views,o_dims,geo,owner_name"]]);
 }
 
-- (void)testURLSkipsNilSearchParameters
+- (void)testURLSkipsNilKeywordSearchParameters
 {
     SearchService *service = [[SearchService alloc] init];
     
-    NSURL *testURL = [service searchEndpointURLForLocation:nil searchTerm:nil];
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:nil];
     
     XCTAssertFalse([testURL.absoluteString containsString:@"lat="]);
     XCTAssertFalse([testURL.absoluteString containsString:@"lon="]);
@@ -63,21 +63,61 @@
     CLLocationCoordinate2D sydney = CLLocationCoordinate2DMake(-33.8634, 151.211);
     CLLocation *location = [[CLLocation alloc] initWithLatitude:sydney.latitude longitude:sydney.longitude];
     
-    NSURL *testURL = [service searchEndpointURLForLocation:location searchTerm:nil];
+    NSURL *testURL = [service searchEndpointURLForLocation:location keywords:nil tags:nil];
     NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
     
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"lat" value:@"-33.8634"]]);
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"lon" value:@"151.211"]]);
 }
 
-- (void)testURLContainsSearchTerm
+- (void)testURLContainsKeywordSearchTerm
 {
     SearchService *service = [[SearchService alloc] init];
     
-    NSURL *testURL = [service searchEndpointURLForLocation:nil searchTerm:@"beach"];
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:@"beach" tags:nil];
     NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
     
     XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"text" value:@"beach"]]);
+}
+
+- (void)testURLContainsCommaSeparatedTagSearchWhenMultipleTagsPassed
+{
+    SearchService *service = [[SearchService alloc] init];
+    
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:@[@"city", @"sunset", @"buildings"]];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
+    
+    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"tags" value:@"city,sunset,buildings"]]);
+}
+
+- (void)testURLHandlesSingleTagSearch
+{
+    SearchService *service = [[SearchService alloc] init];
+    
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:@[@"city"]];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
+    
+    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"tags" value:@"city"]]);
+}
+
+- (void)testURLHandlesExclusionTags
+{
+    SearchService *service = [[SearchService alloc] init];
+    
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:@[@"car", @"ferrari", @"-red"]];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
+    
+    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"tags" value:@"car,ferrari,-red"]]);
+}
+
+- (void)testURLContainsTagModeAllForTagSearch
+{
+    SearchService *service = [[SearchService alloc] init];
+    
+    NSURL *testURL = [service searchEndpointURLForLocation:nil keywords:nil tags:@[@"city", @"sunset", @"buildings"]];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:testURL resolvingAgainstBaseURL:NO];
+    
+    XCTAssertTrue([components.queryItems containsObject:[NSURLQueryItem queryItemWithName:@"tag_mode" value:@"all"]]);
 }
 
 @end

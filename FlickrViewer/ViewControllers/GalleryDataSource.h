@@ -24,7 +24,7 @@ NSString static *const GallerySearchScopeTitle[] = {
 
 @interface GalleryDataSource : NSObject <UICollectionViewDataSource>
 
-- (void)refreshPhotosWithLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm completion:(void (^)(BOOL success, NSError *error))completionBlock;
+- (void)searchPhotosWithLocation:(CLLocation *)location searchText:(NSString *)searchText scope:(GallerySearchScope)scope completion:(void (^)(BOOL success, NSError *error))completionBlock;
 
 - (Photo *)photoAtIndex:(NSInteger)index;
 - (NSInteger)numberOfPhotos;

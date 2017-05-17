@@ -47,9 +47,21 @@
     return self.photos.count;
 }
 
-- (void)refreshPhotosWithLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm completion:(void (^)(BOOL, NSError *))completionBlock
+- (void)searchPhotosWithLocation:(CLLocation *)location searchText:(NSString *)searchText scope:(GallerySearchScope)scope completion:(void (^)(BOOL, NSError *))completionBlock
 {
-    [self.searchService photosForLocation:location searchTerm:searchTerm success:^(NSArray<Photo *> *photos) {
+    NSArray *tags = nil;
+    NSString *keywords = nil;
+    
+    if (scope == GallerySearchScopeTag)
+    {
+        tags = [searchText componentsSeparatedByString:@" "];
+    }
+    else
+    {
+        keywords = searchText;
+    }
+    
+    [self.searchService photosForLocation:location keywords:keywords tags:tags success:^(NSArray<Photo *> *photos) {
         
         [self.photos removeAllObjects];
         [self.photos addObjectsFromArray:photos];

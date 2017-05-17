@@ -140,6 +140,7 @@
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
 {
     searchBar.placeholder = selectedScope == GallerySearchScopeKeyword ? @"Keyword search" : @"Tag search";
+    searchBar.text = @"";
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -207,7 +208,7 @@
 - (void)updateSearchRequest:(CLLocation *)location searchTerm:(NSString *)searchTerm
 {
     [self showLoadingWithMessage:@"Loading photos"];
-    [self.galleryDataSource refreshPhotosWithLocation:location searchTerm:searchTerm completion:^(BOOL success, NSError *error) {
+    [self.galleryDataSource searchPhotosWithLocation:location searchText:searchTerm scope:self.searchController.searchBar.selectedScopeButtonIndex completion:^(BOOL success, NSError *error) {
         __weak typeof(self)weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             

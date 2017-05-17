@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) FlickrAPI *flickrAPI;
 
-- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm;
+- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location keywords:(NSString *)keywords tags:(NSArray <NSString *> *)tags;
 
 @end
 
@@ -34,13 +34,13 @@
 
 - (void)photosForLocation:(CLLocation *)location success:(void (^)(NSArray<Photo *> *))success failure:(void (^)(NSError *))failure
 {
-    [self photosForLocation:location searchTerm:nil success:success failure:failure];
+    [self photosForLocation:location keywords:nil tags:nil success:success failure:failure];
 }
 
-- (void)photosForLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm success:(void (^)(NSArray<Photo *> *))success failure:(void (^)(NSError *))failure
+- (void)photosForLocation:(CLLocation *)location keywords:(NSString *)keywords tags:(NSArray<NSString *> *)tags success:(void (^)(NSArray<Photo *> *))success failure:(void (^)(NSError *))failure
 {
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURL *url = [self searchEndpointURLForLocation:location searchTerm:searchTerm];
+    NSURL *url = [self searchEndpointURLForLocation:location keywords:keywords tags:tags];
     
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -84,7 +84,9 @@
     [task resume];
 }
 
-- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location searchTerm:(NSString *)searchTerm
+#pragma mark - Private
+
+- (NSURL *)searchEndpointURLForLocation:(CLLocation *)location keywords:(NSString *)keywords tags:(NSArray<NSString *> *)tags
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"content_type":@"1",
@@ -98,9 +100,15 @@
         params[@"lon"] = @(location.coordinate.longitude).stringValue;
     }
     
-    if (searchTerm && searchTerm.length)
+    if (keywords && keywords.length)
     {
-        params[@"text"] = searchTerm;
+        params[@"text"] = keywords;
+    }
+    
+    if (tags && tags.count)
+    {
+        params[@"tags"] = [tags componentsJoinedByString:@","];
+        params[@"tag_mode"] = @"all";
     }
     
     return [self.flickrAPI URLForAPIMethod:@"flickr.photos.search" parameters:params];
