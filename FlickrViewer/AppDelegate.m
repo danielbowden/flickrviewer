@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "FlickrViewerStyle.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,10 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [FlickrViewerStyle addStyles];
     
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

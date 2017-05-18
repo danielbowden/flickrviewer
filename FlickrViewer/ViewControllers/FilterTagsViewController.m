@@ -9,6 +9,7 @@
 #import "FilterTagsViewController.h"
 
 #import "FilterTagCell.h"
+#import "UIColor+FlickrViewer.h"
 
 @interface FilterTagsViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
 
@@ -43,7 +44,10 @@
     {
         self.modalPresentationStyle = UIModalPresentationCustom;
         self.transitioningDelegate = self;
+        self.view.backgroundColor = [UIColor flickrViewerAccent];
+        self.tableView.separatorColor = [UIColor flickrViewerBackground];
         _selectedTags = [NSMutableArray array];
+        
     }
     
     return self;

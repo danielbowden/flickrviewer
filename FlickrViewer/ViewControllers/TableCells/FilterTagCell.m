@@ -8,6 +8,8 @@
 
 #import "FilterTagCell.h"
 
+#import "UIColor+FlickrViewer.h"
+
 @interface FilterTagCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *tagLabel;
@@ -27,7 +29,9 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryNone;
-    self.tagLabel.textColor = [UIColor blackColor];
+    self.tagLabel.textColor = [UIColor flickrViewerContent];
+    self.selectedImage.image = [self.selectedImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.selectedImage.tintColor = [UIColor flickrViewerAccent];
 }
 
 - (void)populateWithTag:(NSString *)tag selected:(BOOL)selected
